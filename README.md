@@ -42,3 +42,4 @@ oc create -f deploy/crds/demo.example.com_v1alpha1_demo_cr.yaml
 oc get route
 ```
 
+![Image of Yaktocat](https://github.com/b43646/ansible-operator-demo/blob/master/webapp.png)
