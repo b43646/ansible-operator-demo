@@ -7,7 +7,7 @@
   tasks:
   # using command so we don't need to install any dependencies
   - name: Get existing image hash
-    command: docker images -q {{image_name}}
+    command: docker images -q {{ image_name }}
     register: prev_hash
     changed_when: false
 
@@ -24,7 +24,7 @@
     deploy_dir: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}/deploy"
     pull_policy: Never
     REPLACE_IMAGE: demo.example.com/demo-operator:testing
-    custom_resource: "{{ lookup('file', '/'.join([deploy_dir, 'crds/demo_v1alpha1_demo_cr.yaml'])) | from_yaml }}"
+    custom_resource: "{{ lookup('file', '/'.join([deploy_dir, 'crds/demo.example.com_v1alpha1_demo_cr.yaml'])) | from_yaml }}"
   tasks:
   - block:
     - name: Delete the Operator Deployment
@@ -36,7 +36,7 @@
       when: hostvars[groups.k8s.0].build_cmd.changed
 
     - name: Wait 30s for Operator Deployment to terminate
-      k8s_facts:
+      k8s_info:
         api_version: '{{ definition.apiVersion }}'
         kind: '{{ definition.kind }}'
         namespace: '{{ namespace }}'
@@ -58,10 +58,10 @@
       k8s:
         state: present
         namespace: '{{ namespace }}'
-        definition: "{{ custom_resource }}"
+        definition: '{{ custom_resource }}'
 
-    - name: Wait 40s for reconciliation to run
-      k8s_facts:
+    - name: Wait 2m for reconciliation to run
+      k8s_info:
         api_version: '{{ custom_resource.apiVersion }}'
         kind: '{{ custom_resource.kind }}'
         namespace: '{{ namespace }}'
@@ -69,7 +69,7 @@
       register: cr
       until:
       - "'Successful' in (cr | json_query('resources[].status.conditions[].reason'))"
-      delay: 4
+      delay: 12
       retries: 10
     rescue:
     - name: debug cr

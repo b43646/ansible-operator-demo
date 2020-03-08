@@ -3,26 +3,30 @@
 - name: Create a db service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/db-svc.yaml') }}"
-- name: Create a db deployment
+    src: /opt/ansible/roles/demo/files/db-svc.yaml
+- name: Create a db service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/db-deployment.yaml') }}"
+    src: /opt/ansible/roles/demo/files/db-deployment.yaml
 
 - name: Create a api service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/api-svc.yaml') }}"
-- name: Create a api deployment
+    src: /opt/ansible/roles/demo/files/api-svc.yaml
+- name: Create a api service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/api-deployment.yaml') }}"
+    src: /opt/ansible/roles/demo/files/api-deployment.yaml
 
 - name: Create a web service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/web-svc.yaml') }}"
-- name: Create a web deployment
+    src: /opt/ansible/roles/demo/files/web-svc.yaml
+- name: Create a web service
   k8s:
     state: present
-    definition: "{{ lookup('file', '/opt/ansible/roles/demo/files/web-deployment.yaml') }}"
+    src: /opt/ansible/roles/demo/files/web-deployment.yaml
+- name: Expose web service
+  k8s:
+    state: present
+    src: /opt/ansible/roles/demo/files/web-route.yaml

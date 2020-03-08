@@ -3,4 +3,3 @@
   group: demo.example.com
   kind: Demo
   role: /opt/ansible/roles/demo
-

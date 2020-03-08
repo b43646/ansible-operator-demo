@@ -20,16 +20,16 @@ spec:
           - /tmp/ansible-operator/runner
           - stdout
           # Replace this with the built image name
-          image: quay.io/loren123/demo-operator:latest 
-          imagePullPolicy: Always
+          image: "quay.io/loren123/demo-operator:latest"
+          imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
             name: runner
             readOnly: true
         - name: operator
           # Replace this with the built image name
-          image: quay.io/loren123/demo-operator:latest
-          imagePullPolicy: Never
+          image: "quay.io/loren123/demo-operator:latest"
+          imagePullPolicy: "Always"
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
             name: runner
@@ -44,6 +44,8 @@ spec:
                   fieldPath: metadata.name
             - name: OPERATOR_NAME
               value: "demo-operator"
+            - name: ANSIBLE_GATHERING
+              value: explicit
       volumes:
         - name: runner
           emptyDir: {}
