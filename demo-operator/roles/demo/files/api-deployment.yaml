@@ -2,6 +2,7 @@ apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: words
+  namespace: '{{ meta.namespace }}'
   labels:
     app: words-api
 spec:
