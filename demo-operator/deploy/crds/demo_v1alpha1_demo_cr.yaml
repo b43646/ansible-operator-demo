@@ -1,0 +1,7 @@
+apiVersion: demo.example.com/v1alpha1
+kind: Demo
+metadata:
+  name: example-demo
+spec:
+  # Add fields here
+  size: 3

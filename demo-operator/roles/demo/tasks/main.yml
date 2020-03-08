@@ -1,0 +1,28 @@
+---
+# tasks file for demo
+- name: Create a db service
+  k8s:
+    state: present
+    src: db-svc.yaml
+- name: Create a db deployment
+  k8s:
+    state: present
+    src: db-deployment.yaml
+
+- name: Create a api service
+  k8s:
+    state: present
+    src: api-svc.yaml
+- name: Create a api deployment
+  k8s:
+    state: present
+    src: api-deployment.yaml
+
+- name: Create a web service
+  k8s:
+    state: present
+    src: web-svc.yaml
+- name: Create a web deployment
+  k8s:
+    state: present
+    src: web-deployment.yaml
