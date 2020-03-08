@@ -5,7 +5,7 @@
 ```
 git clone https://github.com/b43646/ansible-operator-demo.git
 
-cd ansible-operator-demo
+cd ansible-operator-demo/demo-operator
 ```
 
 2. 创建CRD
@@ -41,3 +41,4 @@ oc create -f deploy/crds/demo.example.com_v1alpha1_demo_cr.yaml
 ```
 oc get route
 ```
+
