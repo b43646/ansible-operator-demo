@@ -2,5 +2,5 @@
 - version: v1alpha1
   group: demo.example.com
   kind: Demo
-  role: /opt/ansible/roles/dem
+  role: /opt/ansible/roles/demo
 

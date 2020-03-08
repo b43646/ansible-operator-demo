@@ -28,8 +28,8 @@ spec:
             readOnly: true
         - name: operator
           # Replace this with the built image name
-          image: "{{ REPLACE_IMAGE }}"
-          imagePullPolicy: "{{ pull_policy|default('Always') }}"
+          image: quay.io/loren123/demo-operator:latest
+          imagePullPolicy: Never
           volumeMounts:
           - mountPath: /tmp/ansible-operator/runner
             name: runner
